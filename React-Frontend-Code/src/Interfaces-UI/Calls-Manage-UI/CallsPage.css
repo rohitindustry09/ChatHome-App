@@ -1,0 +1,140 @@
+.CallsPage-main {
+  margin: 0 0 120px 0;
+}
+/* General Styles */
+.calls-page-modern {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #f9f9fb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+.calls-header {
+  background: linear-gradient(135deg, #6c63ff, #4839ff);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.calls-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* List Styles */
+.calls-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.call-item-modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 10px 0;
+  background-color: #fff;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.call-item-modern:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar */
+.avatar-modern {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #6c63ff;
+}
+
+/* Call Info */
+.call-content {
+  display: flex;
+  align-items: center;
+}
+
+.call-info {
+  margin-left: 15px;
+}
+
+.call-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.call-info .call-time {
+  margin: 5px 0 0;
+  color: #757575;
+  font-size: 0.9rem;
+}
+
+/* Call Icon */
+.call-icon-modern {
+  margin-left: auto;
+  font-size: 1.8rem;
+}
+
+/* Actions (Buttons) */
+.call-actions-modern {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-modern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+}
+
+.btn-voice {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.btn-voice:hover {
+  background-color: #43a047;
+  transform: scale(1.1);
+}
+
+.btn-video {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.btn-video:hover {
+  background-color: #1976d2;
+  transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .call-item-modern {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .call-actions-modern {
+    margin-top: 10px;
+  }
+}

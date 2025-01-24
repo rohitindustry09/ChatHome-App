@@ -1,0 +1,18 @@
+.nav-back-with-logo {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 20px;
+  background: ;
+}
+.avtar-img {
+  width: 30px;
+  height: 30px;
+  background: #fff !important;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avtar-img img {
+  background: inherit;
+  width: 100%;
+}
