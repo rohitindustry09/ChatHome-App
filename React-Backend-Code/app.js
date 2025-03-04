@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user.js');
 const Message = require('./models/messages.js');
 const WorldChat = require('./models/worldChat.js');
+require('dotenv').config();
 
 const app = express();
 const port = 8000;
@@ -17,8 +18,6 @@ app.use(cors({
 
 app.use(express.json());
 
-const uri = "mongodb+srv://rohitindustry09:qwert63838ryul09@reactmessagecluster.9fem2.mongodb.net/?retryWrites=true&w=majority&appName=reactMessageCluster";
-
 main().then(()=>{
   console.log('Connected to database !');
 }).catch((err)=>{
@@ -26,7 +25,7 @@ main().then(()=>{
 })
 
 async function main() {
-  await mongoose.connect(uri);
+  await mongoose.connect(process.env.MONGO_URI);
 }
 app.listen(port, ()=>{
   console.log(`listening on port http://localhost:${port}...`);
