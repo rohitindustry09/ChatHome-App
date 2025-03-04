@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  BackendLink: 'https://indicated-need-brown-integrating.trycloudflare.com'
-  
+  BackendLink: 'http://localhost:8000'
 };
 
 const BackendServerSlice = createSlice({

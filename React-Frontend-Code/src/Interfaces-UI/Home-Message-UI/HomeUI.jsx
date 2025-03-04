@@ -29,7 +29,7 @@ useEffect(() => {
     setTimeout(function() {
      setShowLoading(false);
      setFriendState(uniqueFriends);
-    }, 1000);
+    }, 600);
     }
   }
 
@@ -81,7 +81,9 @@ useEffect(() => {
           
           }
         </main>
-        <HomeAddAction />
+        <HomeAddAction
+          fillIcon="bi bi-person-fill-add icon-msg-foreground" forPage="Home"
+        />
       </>
     );
   }

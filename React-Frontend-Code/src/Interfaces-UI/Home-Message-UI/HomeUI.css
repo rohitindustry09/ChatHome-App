@@ -180,15 +180,14 @@ main:has(.Home-main) {
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
+  z-index: 200;
   transition: all 0.3s;
 }
 
 .Home-main {
   transition: all .5s;
 }
-.Home-main:hover {
-  background: #d8c0ff;
-}
+
 .Home-main:active {
   background: #d8c0ff;
 }
@@ -245,7 +244,8 @@ main:has(.Home-main) {
 .add-friend:hover .add-friend-container-pop {
 }
 .add-friend-container-pop .form-inner {
-  background: #fff;
+  background: red;
+  z-index: 1000;
   border-radius: 10px;
   padding: 5px;
   display: flex;
@@ -257,6 +257,14 @@ main:has(.Home-main) {
   box-shadow: 1px 1px 5px black;
   transforsm: translateX(400px);
   transition: all 0.5s;
+}
+.add-friend-container-pop .form-inner textarea {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  font-size: 15px;
+  box-shadow: -1px 1px 3px black;
+  width: 100% !important;
 }
 .add-friend-container-pop .form-inner input {
   border-radius: 5px;
@@ -276,7 +284,7 @@ main:has(.Home-main) {
   align-items: ;
   padding: 5px 5px 0 5px;
   widtsh: 3px;
-  position: absolute;
+  position: fixed;
   bottom: 120px;
   right: 30px;
   border: none;

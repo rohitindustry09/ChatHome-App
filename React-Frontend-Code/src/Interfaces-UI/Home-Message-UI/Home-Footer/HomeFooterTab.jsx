@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 export default function HomeFooterTab() {
  return (
   <>
-    <div class="footer-navigation">
+    <div class="footer-navigation" style={{
+      zIndex: '500 !important'
+    }}>
       <HomeFooterIcon 
         iconClass="bi bi-chat-left-text"
         iconTitle="Chats"

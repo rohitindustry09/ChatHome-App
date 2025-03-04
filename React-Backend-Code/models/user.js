@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, default: '+91 xxxxx-xxxxx' },
   bio: { type: String, default: 'Hey! I am on Mood.' },
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: [] }],
-  messageId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }]
+  messageId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
+  worldMessageId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'WorldChat' }],
 });
 
 // Set default avatar

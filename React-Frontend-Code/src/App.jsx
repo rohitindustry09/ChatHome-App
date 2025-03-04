@@ -8,8 +8,9 @@ import UpdatesPage from './Interfaces-UI/Peoples-Updates-UI/UpdatesPage.jsx';
 import MyProfile from './Interfaces-UI/Profile-UI/MyProfile.jsx';
 import SignupLoginTab from './Interfaces-UI/auth/SignupLoginTab.jsx';
 import PrivateRoute from './Outlets/PrivateRoute.jsx';
+import SecondUsersProfile from './Interfaces-UI/Profile-UI/SecondUsersProfile.jsx';
 import './App.css';
-
+import { useEffect } from 'react'
 function Layout() {
   const location = useLocation();
   const hideHeaderFooterRoutes = ['/signup-or-login'];
@@ -22,6 +23,15 @@ function Layout() {
   const hideHeaderFooter =
     hideHeaderFooterRoutes.includes(location.pathname) || isChatWithRoute;
   const hideFooter = hideFooterRoute.includes(location.pathname);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute("content", "#4CAF50"); // Change to green
+      }
+    }, 100);
+  }, []);
 
   return (
     <>
@@ -58,6 +68,10 @@ const router = createBrowserRouter([
           <PrivateRoute redirectTo="/">
            <SignupLoginTab /> 
           </PrivateRoute>
+      },
+      { path: '/profile/:id',
+        element: 
+           <SecondUsersProfile /> 
       },
     ]
   }

@@ -1,0 +1,25 @@
+{
+  "name": "chathome-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohitindustry09/ChatHome-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohitindustry09/ChatHome-App/issues"
+  },
+  "homepage": "https://github.com/rohitindustry09/ChatHome-App#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start:frontend": "cd React-Frontend-Code && npm run dev",
+    "start:backend": "cd React-Backend-Code && npm start",
+    "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  }
+}

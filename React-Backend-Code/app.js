@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user.js');
 const Message = require('./models/messages.js');
+const WorldChat = require('./models/worldChat.js');
 
 const app = express();
 const port = 8000;
@@ -175,3 +176,112 @@ app.get('/api/:sender/:reciever', async (req, res) => {
     return res.status(500).json({ message: 'Server error', error });
   }
 });
+
+/*share to world*/
+app.get('/api/:id/toWorld/:message', async (req, res)=>{
+  const { id, message } = req.params;
+  const msg = new WorldChat({
+    user: id,
+    message: message
+  });
+  console.log(msg)
+  await msg.save();
+  const user = await User.findByIdAndUpdate(id, {
+    $addToSet : { worldMessageId: msg._id }}, { new: true });
+  if (user) {
+    res.status(201).json({ message: 'message posted!'})
+    console.log(user)
+  } else {
+    res.status(500).json({ message: 'cant send!'})
+  }
+})
+
+app.get('/api/getWorldChat', async (req, res)=>{
+  let messages = await WorldChat.find({});
+  console.log(messages)
+  let users = await User.find(messages.user, 'username avatar _id')
+ /* let seperatedDatas = users.map(user => {
+    const { password, username, avatar, _id, ...restUserData } = user.toObject(); 
+    return { username, avatar, _id };
+  })*/
+  console.log(users)
+  return res.status(201).json({ messages, users });
+});
+
+//like updation
+
+app.get('/api/:id/updateWorldMessage/like/:worldMsgId', async (req, res) => {
+  const { id, worldMsgId } = req.params;
+
+  try {
+    let message = await WorldChat.findById(worldMsgId);
+
+    if (!message) {
+      return res.status(404).json({ result: 'Message not found' });
+    }
+
+    let updatedMessage;
+    
+    if (message.likes.includes(id)) {
+      // Remove like if user already liked
+      updatedMessage = await WorldChat.findByIdAndUpdate(
+        worldMsgId,
+        { $pull: { likes: id } },
+        { new: true }
+      );
+    } else {
+      // Add like if user hasn't liked
+      updatedMessage = await WorldChat.findByIdAndUpdate(
+        worldMsgId,
+        { $addToSet: { likes: id } },
+        { new: true }
+      );
+    }
+
+    res.status(201).json({ result: 'Success', message: updatedMessage });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ result: 'Error', error: error.message });
+  }
+});
+
+//comment get 
+app.get('/api/commentFrom/:fromId/to/:postId/:comment', async (req, res) => {
+  const { fromId, postId, comment } = req.params;
+
+  try {
+    const message = await WorldChat.findByIdAndUpdate(
+      postId,
+      { 
+        $push: { comments: { user: fromId, comment: comment, createdAt: new Date() } } 
+      },
+      { new: true }
+    );
+
+    if (!message) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    console.log(message);
+    const messages = await WorldChat.find({})
+    res.status(201).json({ messages });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//comment show user
+app.get('/api/commentUser/hi/:id', async (req, res)=>{
+  const { id } = req.params;
+  console.log(req.params)
+  
+  const user = await User.findById(id,'username avatar email');
+  if (user) {
+    res.status(201).json({ message: 'users found', user });
+  } else {
+    res.status(500).json({ message: 'users not found' });
+  }
+})

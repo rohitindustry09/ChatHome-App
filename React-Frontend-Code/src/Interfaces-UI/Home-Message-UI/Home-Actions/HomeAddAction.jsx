@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-export default function HomeAddAction() {
+export default function HomeAddAction({ fillIcon, forPage }) {
   let [isClick, setClick] = useState(false);
   let [countFriends, setCountFriends] = useState([]);
   let [input, setInput] = useState('');
@@ -64,7 +64,6 @@ export default function HomeAddAction() {
           setCountFriends((prevFriends) => {
             const user = response.data.user;
 
-            // Check if user already exists in the list to avoid duplicates
             const userExists = prevFriends.some((friend) => friend._id === user._id || friend.username === user.username);
 
             if (!userExists) {
@@ -85,8 +84,30 @@ export default function HomeAddAction() {
   // Handle input change (calls debounced search function)
   const handleInputChange = (e) => {
     setInput(e.target.value);
-    handleSearchSomeone(e); // Call debounced function
+    if (forPage === 'Home') {
+      handleSearchSomeone(e); // Call debounced function
+    }
   };
+  
+  const handleShareWorld = async (e) => {
+  e.preventDefault();
+  console.log('handleShareWorld called');
+  
+  try {
+    const response = await axios.get(`${BackendLink}/api/${user._id}/toWorld/${input}`);
+    
+    if (response.status === 201) {
+      console.log('Navigating to /updates');
+      window.location.reload()
+    } else {
+      console.error('Failed to post message:', response);
+    }
+  } catch (error) {
+    console.error('Error in handleShareWorld:', error);
+  }
+};
+
+  
   const handleAddToMessage = async (id) => {
     if (id) {
   
@@ -104,18 +125,33 @@ export default function HomeAddAction() {
   }
   return (
     <>
-      <div className="add-friend-container-pop" ref={displayNoneRef}>
-        <div className="form-inner" ref={addSlideRef}>
+      <div className="add-friend-container-pop" style={{
+        top: forPage === 'Home' ? '30%' : '10%'
+      }} ref={displayNoneRef}>
+        <div className="form-inner" style={{
+          height: forPage === 'Home' ? '20vh' : '60vh',
+          width: forPage === 'Home' ? '70%' : '80%',
+          
+        }} ref={addSlideRef}>
           <h3>
             Make Friends <i className="bi bi-people-fill"></i>
           </h3>
           <form>
+            {
+              forPage === 'Home' ?
             <input
               type="text"
               placeholder="Find someone..."
               value={input}
               onChange={handleInputChange}
-            />
+            /> 
+            : 
+            <>
+              
+            <textarea cols="30" placeholder="Chat With World..." onChange={handleInputChange}></textarea>
+            <button onClick={handleShareWorld}> Share World </button>
+            </>
+            }
           </form>
           <div>
             {/* Render countFriends list */}
@@ -149,7 +185,7 @@ export default function HomeAddAction() {
         {isClick ? (
           <i className="bi bi-chevron-double-down icon-msg-foreground"></i>
         ) : (
-          <i className="bi bi-person-fill-add icon-msg-foreground"></i>
+          <i className={fillIcon}> </i>
         )}
       </button>
     </>
