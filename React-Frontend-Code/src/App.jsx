@@ -38,39 +38,42 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />, 
     children: [
-      { path: '/', 
+      { 
+        path: '/', 
         element: 
-        <PrivateRoute redirectTo="/signup-or-login">
-          <HomeUI /> 
-        </PrivateRoute>
+          <PrivateRoute redirectTo="/signup-or-login">
+            <HomeUI /> 
+          </PrivateRoute>
       },
       { path: '/ChatWith/:id', element: <ChatUI /> },
       { path: '/calls-recents', element: <CallsPage /> },
       { path: '/updates', element: <UpdatesPage /> },
-      { path: '/profile/:id', 
+      { 
+        path: '/profile/:id', 
         element: 
-        <PrivateRoute redirectTo="/signup-or-login">
-          <Profile />
-        </PrivateRoute>
-      },
-      { path: '/signup-or-login',
-        element: 
-          <PrivateRoute redirectTo="/">
-           <SignupLoginTab /> 
+          <PrivateRoute redirectTo="/signup-or-login">
+            <Profile />
           </PrivateRoute>
       },
-      { path: '/Call/:id',
+      { 
+        path: '/signup-or-login', 
         element: 
-         <h1 style={{ position: 'relative', top: '100px', textAlign: 'center'}}> Its on Working State... </h1>
+          <PublicRoute redirectTo="/">
+            <SignupLoginTab />
+          </PublicRoute>
+      },
+      { 
+        path: '/Call/:id',
+        element: <h1 style={{ position: 'relative', top: '100px', textAlign: 'center'}}>Its on Working State...</h1>
       }, 
       {
         path: 'demo',
-        element:
-        <DemoDoing />
+        element: <DemoDoing />
       }
     ]
   }
 ]);
+
 
 function App() {
   return (
