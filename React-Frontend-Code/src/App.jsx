@@ -23,15 +23,6 @@ function Layout() {
   const hideHeaderFooter =
     hideHeaderFooterRoutes.includes(location.pathname) || isChatWithRoute;
   const hideFooter = hideFooterRoute.includes(location.pathname);
-  
-  useEffect(() => {
-    setTimeout(() => {
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-      if (metaThemeColor) {
-        metaThemeColor.setAttribute("content", "#4CAF50"); // Change to green
-      }
-    }, 100);
-  }, []);
 
   return (
     <>
