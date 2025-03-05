@@ -24,11 +24,6 @@ function Layout() {
   const hideHeaderFooter =
     hideHeaderFooterRoutes.includes(location.pathname) || isChatWithRoute;
   const hideFooter = hideFooterRoute.includes(location.pathname);
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> f34a5d0 (Updated files and folder)
   return (
     <>
       {!hideHeaderFooter && <HomeHeader showWithSearch={isHomeRoute} />}
