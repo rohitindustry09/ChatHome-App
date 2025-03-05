@@ -41,7 +41,7 @@ export default function UpdatesPage() {
     }
 
     if (user) getWorldMessages();
-  }, []);
+  }, [user]);
 
   // Update userComments whenever messages change
   useEffect(() => {
