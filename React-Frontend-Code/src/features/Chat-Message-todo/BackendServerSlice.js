@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  BackendLink: 'http://localhost:8000'
+  BackendLink: 'https://chat-me-1z46.onrender.com'
 };
 
 const BackendServerSlice = createSlice({
