@@ -92,13 +92,13 @@ export default function HomeAddAction({ fillIcon, forPage }) {
   const handleShareWorld = async (e) => {
   e.preventDefault();
   console.log('handleShareWorld called');
-  
+
   try {
     const response = await axios.get(`${BackendLink}/api/${user._id}/toWorld/${input}`);
-    
+
     if (response.status === 201) {
       console.log('Navigating to /updates');
-      window.location.reload()
+      handleAddActionBlur();
     } else {
       console.error('Failed to post message:', response);
     }
@@ -106,6 +106,7 @@ export default function HomeAddAction({ fillIcon, forPage }) {
     console.error('Error in handleShareWorld:', error);
   }
 };
+
 
   
   const handleAddToMessage = async (id) => {
