@@ -9,6 +9,7 @@ import UpdatesPage from './Interfaces-UI/Peoples-Updates-UI/UpdatesPage.jsx';
 import SignupLoginTab from './Interfaces-UI/auth/SignupLoginTab.jsx';
 import Profile from './Interfaces-UI/Profile-UI/Profile.jsx';
 import PrivateRoute from './Outlets/PrivateRoute.jsx';
+import PublicRoute from './Outlets/PublicRoute.jsx';
 import DemoDoing from './DemoDoing.jsx'
 import './App.css';
 
