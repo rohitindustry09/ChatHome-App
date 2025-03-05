@@ -144,7 +144,7 @@ footer {
   row-gap: 5px;
 }
 
-.footer-icon-parent:hover .icon {
+.footxer-icon-parent:hover .icon {
   background: #d9b3ff;
   color: #840dff;
   font-zweight: bold;
@@ -155,12 +155,27 @@ footer {
   transform: scale(1.1);
   font-weight: 600;
 }
-.rotating {
+
+.footer-icon-parent {
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.footer-with-icon-text .active-footer {
+  background: #d9b3ff;
+  color: #840dff;
+  font-weight: bold;
+  padding: 5px 20px !important;
+}
+
+.footer-with-icon-text .rotating {
   transform-style: preserve-3d;
   transidtion: all 0.3s;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.footer-icon-parent:hover .rotating {
+.fooxter-icon-parent:hover .rotating {
   transfosrm: rotate(90deg) !important;
   transform: rotateY(180deg);
 }
@@ -244,7 +259,7 @@ main:has(.Home-main) {
 .add-friend:hover .add-friend-container-pop {
 }
 .add-friend-container-pop .form-inner {
-  background: red;
+  background: #eaeaea;
   z-index: 1000;
   border-radius: 10px;
   padding: 5px;
@@ -254,7 +269,7 @@ main:has(.Home-main) {
   row-gap: 10px;
   width: 70%;
   padding: 20px 2px;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: -5px 5px 0 black;
   transforsm: translateX(400px);
   transition: all 0.5s;
 }
@@ -263,7 +278,6 @@ main:has(.Home-main) {
   border: none;
   padding: 5px;
   font-size: 15px;
-  box-shadow: -1px 1px 3px black;
   width: 100% !important;
 }
 .add-friend-container-pop .form-inner input {
@@ -271,7 +285,6 @@ main:has(.Home-main) {
   border: none;
   padding: 5px;
   font-size: 15px;
-  box-shadow: -1px 1px 3px black;
 }
 .add-friend-container-pop .form-inner input:hover {
   outline: none;
@@ -324,4 +337,48 @@ main:has(.Home-main) {
     transform: rotate(900deg);
     
   }
+}
+
+/* Modern form styling */
+.form-of-add-action {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: -2px 2px 5px black;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px #c383ff;
+}
+
+form button {
+    padding: 12px 20px;
+    background: linear-gradient(to bottom right, #a84bff, #fff);
+    box-shadow: 2px 2px 0 black;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+form button:hover {
+    background: #0056b3;
 }

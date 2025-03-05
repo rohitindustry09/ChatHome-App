@@ -3,14 +3,20 @@ const User = require('../models/user.js');
 const Message = require('../models/messages.js');
 const WorldChat = require('../models/worldChat.js');
 const initData = require('./data.js');
-
-const uri = "mongodb+srv://rohitindustry09:qwert63838ryul09@reactmessagecluster.9fem2.mongodb.net/?retryWrites=true&w=majority&appName=reactMessageCluster";
+require('dotenv').config({ path: '../.env' });
 
 async function main() {
-  await mongoose.connect(uri);
-  console.log('Connected to database .!');
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to database.!');
 
-  await initDb(); // Ensuring initDb runs after connection
+    await initDb(); // Ensuring initDb runs after connection
+  } catch (error) {
+    console.error('Database connection error:', error);
+  }
 }
 
 async function initDb() {
@@ -29,6 +35,5 @@ async function initDb() {
   }
 }
 
-main().catch((err) => {
-  console.error('Database connection error:', err);
-});
+// Call the function and handle errors properly
+main();

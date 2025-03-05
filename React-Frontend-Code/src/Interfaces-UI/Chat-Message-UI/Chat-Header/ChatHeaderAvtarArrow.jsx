@@ -13,6 +13,9 @@ export default function ChatHeaderAvtarArrow({ forPage = 'chat', user }) {
   const linkTo = displayUser ? `/ChatWith/${displayUser._id}` : '#';
 
   return (
+  <Link to={`/profile/${displayUser?._id}`} style={{ 
+    color: 'black', textDecoration: 'none'
+  }}>
     <nav className="nav-back-with-logo">
       {forPage === 'calls' ? (
         <Link to={linkTo}>
@@ -24,18 +27,19 @@ export default function ChatHeaderAvtarArrow({ forPage = 'chat', user }) {
         </Link>
       ) : null}
 
+    
       <div
         className="avtar-img"
         style={{
           border: '1px solid black',
           boxShadow: '0px 0px 5px #ff67ce',
-        }}
-      >
+        }}>
         <img src={displayUser?.avatar || messageImage} alt="friend-image" />
       </div>
 
       <h5 className="username-text">{displayUser?.username || 'Unknown'}</h5>
     </nav>
+  </Link>
   );
 }
 

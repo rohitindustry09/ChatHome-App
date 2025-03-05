@@ -5,17 +5,18 @@ import HomeFooter from './Interfaces-UI/Home-Message-UI/HomeFooter.jsx';
 import ChatUI from './Interfaces-UI/Chat-Message-UI/ChatUI.jsx';
 import CallsPage from './Interfaces-UI/Calls-Manage-UI/CallsPage.jsx';
 import UpdatesPage from './Interfaces-UI/Peoples-Updates-UI/UpdatesPage.jsx';
-import MyProfile from './Interfaces-UI/Profile-UI/MyProfile.jsx';
+//import MyProfile from './Interfaces-UI/Profile-UI/MyProfile.jsx';
 import SignupLoginTab from './Interfaces-UI/auth/SignupLoginTab.jsx';
+import Profile from './Interfaces-UI/Profile-UI/Profile.jsx';
 import PrivateRoute from './Outlets/PrivateRoute.jsx';
-import SecondUsersProfile from './Interfaces-UI/Profile-UI/SecondUsersProfile.jsx';
+import DemoDoing from './DemoDoing.jsx'
 import './App.css';
-import { useEffect } from 'react'
+
 function Layout() {
   const location = useLocation();
   const hideHeaderFooterRoutes = ['/signup-or-login'];
   const isHomeRoute = location.pathname === '/';
-  const hideFooterRoute = ['/myProfile'];
+  const hideFooterRoute = ['/profile/:id'];
 
   // Use matchPath for dynamic routes
   const isChatWithRoute = matchPath('/ChatWith/:id', location.pathname);
@@ -23,7 +24,11 @@ function Layout() {
   const hideHeaderFooter =
     hideHeaderFooterRoutes.includes(location.pathname) || isChatWithRoute;
   const hideFooter = hideFooterRoute.includes(location.pathname);
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> f34a5d0 (Updated files and folder)
   return (
     <>
       {!hideHeaderFooter && <HomeHeader showWithSearch={isHomeRoute} />}
@@ -32,7 +37,6 @@ function Layout() {
     </>
   );
 }
-
 
 const router = createBrowserRouter([
   {
@@ -48,10 +52,10 @@ const router = createBrowserRouter([
       { path: '/ChatWith/:id', element: <ChatUI /> },
       { path: '/calls-recents', element: <CallsPage /> },
       { path: '/updates', element: <UpdatesPage /> },
-      { path: '/myProfile', 
+      { path: '/profile/:id', 
         element: 
         <PrivateRoute redirectTo="/signup-or-login">
-          <MyProfile />
+          <Profile />
         </PrivateRoute>
       },
       { path: '/signup-or-login',
@@ -60,10 +64,15 @@ const router = createBrowserRouter([
            <SignupLoginTab /> 
           </PrivateRoute>
       },
-      { path: '/profile/:id',
+      { path: '/Call/:id',
         element: 
-           <SecondUsersProfile /> 
-      },
+         <h1 style={{ position: 'relative', top: '100px', textAlign: 'center'}}> Its on Working State... </h1>
+      }, 
+      {
+        path: 'demo',
+        element:
+        <DemoDoing />
+      }
     ]
   }
 ]);

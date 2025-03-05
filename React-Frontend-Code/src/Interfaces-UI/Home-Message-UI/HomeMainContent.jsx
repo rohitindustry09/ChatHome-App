@@ -19,11 +19,11 @@ export default function HomeMainContent({ friend }) {
       <div className="message-to-people">
         {/* Profile Image (Does not trigger navigation) */}
         <div className="message-to-people-ui-image" onClick={handleClickImage}>
-          <img src={friend.avatar} alt="Profile" />
+          <img src={friend?.avatar} alt="Profile" />
         </div>
 
         {/* Entire User Info is Clickable */}
-        <Link to={`/ChatWith/${friend._id}`} className="user-info">
+        <Link to={`/ChatWith/${friend?._id}`} className="user-info">
           <div className="message-people-ui-banner">
             <h4>{friend.username}</h4>
             <span>✓✓ last message</span>

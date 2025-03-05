@@ -1,0 +1,181 @@
+/* Main Profile Container */
+.profile-container {
+  
+  position: relative;
+  top: 50px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInAnimation 1s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Header Section */
+.profile-img {
+  background: radial-gradient(circle, #fff, #d9c8ff, #9b70ff);
+  background-size: 200% 200%; /* Expand the gradient for smoother movement */
+  background-position: 100% 100%; /* Start from top-left */
+  border-radius: 20px;
+  box-shadow: 5px 5px 0 black;
+  padding: 20px 0;
+  transition: all 0.5s;
+
+  animation: posAnyColor 5s alternate infinite;
+}
+
+@keyframes posAnyColor {
+  0% {
+    background-position: 100% 100%; /* Top-left */
+  }
+  33% {
+    background-position: 0% 100%; /* Top-right */
+  }
+  66% {
+    background-position: 0% 0%; /* Bottom-right */
+  }
+  100% {
+    background-position: 100% 0%; /* Back to Top-left */
+  }
+}
+
+
+
+
+.profile-img img {
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #975efc, #fff);
+  box-shadow: 5px 5px 5px black;
+  animation: moveShadow 5s alternate infinite;
+}
+@keyframes moveShadow {
+  0%{
+    
+  box-shadow: 5px 5px 5px black;
+  } 
+  33%{
+    
+    box-shadow: -5px 5px 5px black;
+  }
+  66%{
+    
+  box-shadow: -5px -5px 5px black;
+  } 
+  100%{
+    
+    box-shadow: 5px -5px 5px black;
+  }
+}
+.back-btn, .edit-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Profile Info */
+.profile-info {
+  text-align: center;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+  margin-top: 10px;
+}
+
+.bio {
+  font-size: 14px;
+  color: #666;
+  opacity: 0.9;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.action-btn {
+  flex: 1;
+  background: #eeeeee;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.action-btn i {
+  font-size: 20px;
+  color: #444444;
+}
+
+.action-btn span {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin-top: 5px;
+}
+
+.action-btn:hover {
+  background: #e1e1e1;
+}
+
+.action-btn-link {
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+}
+.action-btn-link button {
+  width: 100%;
+}
+
+
+/* Description Section */
+.description {
+  padding: 15px;
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(to bottom right, #73fff0 , #fff );
+  box-shadow: 5px 5px 0 black;
+  margin: 20px auto;
+  color: #242424;
+  border-radius: 20px;
+}
+
+.status {
+  font-weight: bold;
+  color: green;
+}

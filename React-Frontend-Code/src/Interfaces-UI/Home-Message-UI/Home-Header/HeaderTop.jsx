@@ -15,11 +15,18 @@ export default function HeaderTop() {
           user ? 
           <>
            <div class="avtar-img">
-            <Link to="/myProfile">
+            <Link to={`/profile/${user?._id}`}>
              <img src={user.avatar} alt="image"/>
             </Link>
            </div>
-           <i class="bi bi-three-dots-vertical"></i>
+           <button style={{
+             border: 'none',
+             padding: '5px',
+             fontSize: '15px',
+             borderRadius: '5px'
+           }}>
+            <i class="bi bi-three-dots-vertical"></i>
+           </button>
           </>
            : 
             <Link to="/signup-or-login" class="links">

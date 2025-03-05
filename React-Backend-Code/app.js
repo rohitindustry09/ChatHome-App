@@ -96,6 +96,26 @@ app.get('/api/addFriend/:friendId/to/:id', async (req, res) => {
   
 });
 
+app.get('/api/deleteFriend/:friendId/from/:id', async (req, res) => {
+  
+  const { friendId, id } = req.params;
+
+  try {
+    let user = await User.findByIdAndUpdate(id, 
+   { $pull: { friends: friendId } }, { new: true });//user updation
+    let userFriend = await User.findByIdAndUpdate(friendId, 
+   { $pull: { friends: id } }, { new: true });//friend data updation
+    console.log(user)
+    const { password: _, ...restUserData } = user.toObject();
+    //re saving the localStorage when adding friend
+    res.status(200).json({ message: 'friend added!', user: restUserData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error!' });
+  }
+  
+});
+
 
 app.post('/api/user', async (req, res)=>{
     const { username, email, password, confirmPassword } = req.body;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserCommentId } from '../../features/Chat-Message-todo/CommentSlice.js';
+import DotsLoader from '../Loaders-UI/DotsLoader.jsx'
 
 export default function UpdatesPage() {
   const [messages, setMessages] = useState([]);
@@ -35,7 +36,7 @@ export default function UpdatesPage() {
         console.error("Error fetching messages:", error);
         setMessages([]);
       } finally {
-        setTimeout(() => setShowLoading(false), 500);
+        setTimeout(() => setShowLoading(false), 200);
       }
     }
 
@@ -85,6 +86,9 @@ export default function UpdatesPage() {
 
   return (
     <>
+    {showLoading ? (
+       <DotsLoader />
+     ) : (
       <main style={{
         padding: '60px 10px 20px 10px',
         display: 'flex',
@@ -95,24 +99,7 @@ export default function UpdatesPage() {
         overflow: 'hidden'
       }}>
         <h1>Best wishes!</h1>
-
-        {showLoading ? (
-          <h3 className="loading-parent" style={{
-            position: 'absolute',
-            top: '50%',
-            left: '40%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: '#fff',
-            padding: '10px',
-            borderRadius: '10px'
-          }}>
-            <i className="bi bi-arrow-clockwise loading"></i>
-            Loading
-          </h3>
-        ) : messages.length === 0 ? (
+        { messages.length === 0 ? (
           <div style={{
             display: 'flex',
             justifyContent: 'center',
@@ -227,6 +214,7 @@ export default function UpdatesPage() {
             />
             <button style={{
               background: '#e2e2e2',
+              color: '#9f39ff',
               border: 'none',
               borderRadius: '10px',
               padding: '10px',
@@ -239,6 +227,7 @@ export default function UpdatesPage() {
           </form>
         </div>
       </main>
+    )}
       <HomeAddAction
         fillIcon="bi bi-chat-quote-fill icon-msg-foreground"
         forPage="updates"

@@ -126,35 +126,36 @@ export default function HomeAddAction({ fillIcon, forPage }) {
   return (
     <>
       <div className="add-friend-container-pop" style={{
-        top: forPage === 'Home' ? '30%' : '10%'
+        top: forPage === 'Home' ? '30%' : '30%'
       }} ref={displayNoneRef}>
         <div className="form-inner" style={{
-          height: forPage === 'Home' ? '20vh' : '60vh',
+          
           width: forPage === 'Home' ? '70%' : '80%',
           
         }} ref={addSlideRef}>
           <h3>
-            Make Friends <i className="bi bi-people-fill"></i>
+            {
+              forPage === 'Home' ? 
+              <>
+              Make Friends <i className="bi bi-people-fill"></i>
+              </>
+              :
+              <>
+              World Chat <i className="bi bi-globe-americas"></i>
+              </>
+            }
           </h3>
-          <form>
+          <form className="form-of-add-action">
             {
               forPage === 'Home' ?
+          <>
             <input
               type="text"
               placeholder="Find someone..."
               value={input}
               onChange={handleInputChange}
             /> 
-            : 
-            <>
-              
-            <textarea cols="30" placeholder="Chat With World..." onChange={handleInputChange}></textarea>
-            <button onClick={handleShareWorld}> Share World </button>
-            </>
-            }
-          </form>
-          <div>
-            {/* Render countFriends list */}
+
             {countFriends.map((user) => (
               <div key={user._id} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', columnGap: '100px', letterSpacing: '2px', margin: '7px 0'}}
               onClick={()=> handleAddToMessage(user._id)}
@@ -173,6 +174,16 @@ export default function HomeAddAction({ fillIcon, forPage }) {
                 ></i>
               </div>
             ))}
+            </>
+            : 
+            <>
+              
+            <textarea cols="20" rows="4" placeholder="Chat With World..." value={input} onChange={handleInputChange}></textarea>
+            <button onClick={handleShareWorld}> Share World </button>
+            </>
+            }
+          </form>
+          <div>
           </div>
         </div>
       </div>
