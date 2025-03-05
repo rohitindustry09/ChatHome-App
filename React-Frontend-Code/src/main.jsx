@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 //import { StrictMode } from 'react';
-=======
->>>>>>> f34a5d0 (Updated files and folder)
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
