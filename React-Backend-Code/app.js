@@ -27,7 +27,7 @@ main().then(()=>{
 async function main() {
   await mongoose.connect(process.env.MONGO_URI);
 }
-app.listen(port, ()=>{
+app.listen(port, '0.0.0.0', ()=>{
   console.log(`listening on port http://localhost:${port}...`);
 });
 
