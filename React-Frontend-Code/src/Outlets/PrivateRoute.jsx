@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
-
-const getUser = () => {
-  return localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
-};
+import { useMemo } from "react";
 
 const PrivateRoute = ({ children, redirectTo }) => {
-  const user = getUser(); 
+  // Memoize user to prevent re-reading localStorage on every render
+  const user = useMemo(() => {
+    return localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+  }, []);
 
   return user ? children : <Navigate to={redirectTo} replace />;
 };
