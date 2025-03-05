@@ -40,9 +40,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', 
         element: 
-        <PrivateRoute redirectTo="/signup-or-login">
-          <HomeUI /> 
-        </PrivateRoute>
+        <HomeUI />
       },
       { path: '/ChatWith/:id', element: <ChatUI /> },
       { path: '/calls-recents', element: <CallsPage /> },
